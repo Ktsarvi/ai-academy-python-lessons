@@ -28,8 +28,7 @@ print(f"3. Temperature = {T} K")
 print("\nNormal Distribution")
 
 def normal_pdf(x, mu, sigma):
-    return (1 / (sigma * math.sqrt(2 * math.pi))) * \
-           math.exp(-((x - mu) ** 2) / (2 * sigma ** 2))
+    return (1 / (sigma * math.sqrt(2 * math.pi))) * math.exp(-((x - mu) ** 2) / (2 * sigma ** 2))
 
 # 1
 y1 = normal_pdf(0.5, 0, 1)
