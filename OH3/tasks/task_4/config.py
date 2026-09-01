@@ -1,0 +1,5 @@
+settings = {
+    "app_name": "OH Toolkit",
+    "version": "1.0",
+    "max_users": 50
+}
