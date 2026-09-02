@@ -1,0 +1,12 @@
+Why I switched from Java to Python
+A gentle introduction to python generators
+Building a JavaScript framework from scratch
+Javascript vs TypeScript: what changed in 2026
+Java Virtual Threads explained
+Learning python: a beginner's roadmap
+Is javascript still worth learning in 2026?
+The state of Java in enterprise backends
+Ten years of Python at our startup
+CSS Grid vs Flexbox in 2026
+JavaScript closures explained simply
+Why we chose Java over Python for our backend

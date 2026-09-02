@@ -1,0 +1,5 @@
+Every big achievement starts as a small, uncertain step. When you sit down to write your first program, it will not be perfect, and that is completely fine. The goal is not to be flawless on day one. The goal is to keep showing up, keep practicing, and keep asking questions until the ideas finally click.
+
+Python rewards curiosity. If you read error messages carefully, experiment with small examples, and are not afraid to break things, you will learn faster than you expect. Every developer you admire once struggled with the exact same concepts you are struggling with today. The difference is simply that they kept going.
+
+So keep going. Write the code, run the code, fix the code, and then write a little more. That is how real skill is built, one small step at a time.

@@ -1,0 +1,2 @@
+Word count: 138
+Top 3 words: [('the', 8), ('you', 6), ('is', 6)]
