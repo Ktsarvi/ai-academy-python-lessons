@@ -19,9 +19,10 @@ class SubscriptionManager:
 
     def list_subscriptions(self):
         if not self.subscriptions:
-            print("No subscriptions found.")
+            print("\nNo subscriptions found.")
             return
 
+        print()
         for subscription in self.subscriptions:
             print(subscription)
 
@@ -40,8 +41,9 @@ class SubscriptionManager:
 
     def upcoming_payments(self):
         if not self.subscriptions:
-            print("No subscriptions found.")
+            print("\nNo subscriptions found.")
             return
+        print()
 
         today = datetime.today().date()
 
@@ -111,7 +113,7 @@ class SubscriptionManager:
             
     def spending_statistics(self):
         if not self.subscriptions:
-            print("No subscriptions found.")
+            print("\nNo subscriptions found.")
             return
 
         monthly = self.monthly_cost()
@@ -165,8 +167,9 @@ class SubscriptionManager:
                 results.append(subscription)
 
         if not results:
-            print("No subscriptions found.")
+            print("\nNo subscriptions found.")
             return
+        print()
 
         for subscription in results:
             print(subscription)
@@ -211,5 +214,4 @@ class SubscriptionManager:
 
         for warning in warnings:
             print(warning)
-
         print()

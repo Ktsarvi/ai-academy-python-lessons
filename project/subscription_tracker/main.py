@@ -37,27 +37,27 @@ while True:
 
         manager.add_subscription(subscription)
 
-        print("Subscription added!")
+        print("\nSubscription added!")
 
     elif choice == "2":
         name = get_valid_name()
 
         if manager.remove_subscription(name):
-            print("Subscription removed!")
+            print("\nSubscription removed!")
         else:
-            print("Subscription not found.")
+            print("\nSubscription not found.")
 
     elif choice == "3":
         manager.list_subscriptions()
 
     elif choice == "4":
-        print(f"Weekly cost: {manager.monthly_cost() * 12 / 52:.2f} AZN")
+        print(f"\nWeekly cost: {manager.monthly_cost() * 12 / 52:.2f} AZN")
 
     elif choice == "5":
-        print(f"Monthly cost: {manager.monthly_cost():.2f} AZN")
+        print(f"\nMonthly cost: {manager.monthly_cost():.2f} AZN")
 
     elif choice == "6":
-        print(f"Yearly cost: {manager.monthly_cost() * 12:.2f} AZN")
+        print(f"\nYearly cost: {manager.monthly_cost() * 12:.2f} AZN")
 
     elif choice == "7":
         manager.upcoming_payments()
@@ -71,13 +71,13 @@ while True:
 
     elif choice == "10":
         manager.save_subscriptions()
-        print("Subscriptions saved!")
+        print("\nSubscriptions saved!")
 
     elif choice == "11":
         manager.save_subscriptions()
-        print("Subscriptions saved!")
+        print("\nSubscriptions saved!")
         print("Goodbye!")
         break
 
     else:
-        print("Invalid option. Please choose 1-11.")
+        print("\nInvalid option. Please choose 1-11.")
