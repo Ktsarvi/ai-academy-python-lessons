@@ -14,8 +14,9 @@ while True:
     print("5. Show yearly cost")
     print("6. Upcoming payments")
     print("7. Spending statistics")
-    print("8. Save subscriptions")
-    print("9. Exit")
+    print("8. Search subscriptions")
+    print("9. Save subscriptions")
+    print("10. Exit")
 
     choice = input("Choose an option: ").strip()
 
@@ -60,14 +61,18 @@ while True:
         manager.spending_statistics()
 
     elif choice == "8":
+        query = input("Search: ").strip()
+        manager.search_subscriptions(query)
+
+    elif choice == "9":
         manager.save_subscriptions()
         print("Subscriptions saved!")
 
-    elif choice == "9":
+    elif choice == "10":
         manager.save_subscriptions()
         print("Subscriptions saved!")
         print("Goodbye!")
         break
 
     else:
-        print("Invalid option. Please choose 1-9.")
+        print("Invalid option. Please choose 1-10.")

@@ -142,3 +142,17 @@ class SubscriptionManager:
         f"{most_expensive.name} "
         f"({most_expensive.monthly_cost():.2f} AZN/month)"
     )
+
+    def search_subscriptions(self, query):
+        results = []
+
+        for subscription in self.subscriptions:
+            if query.lower() in subscription.name.lower():
+                results.append(subscription)
+
+        if not results:
+            print("No subscriptions found.")
+            return
+
+        for subscription in results:
+            print(subscription)
