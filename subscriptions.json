@@ -1,0 +1,38 @@
+[
+    {
+        "name": "netflix",
+        "price": 15.0,
+        "billing_cycle": "monthly",
+        "next_payment": "2026-09-10"
+    },
+    {
+        "name": "youtube premium",
+        "price": 5.0,
+        "billing_cycle": "monthly",
+        "next_payment": "2026-09-15"
+    },
+    {
+        "name": "spotify",
+        "price": 12.0,
+        "billing_cycle": "monthly",
+        "next_payment": "2026-09-20"
+    },
+    {
+        "name": "icloud",
+        "price": 3.0,
+        "billing_cycle": "monthly",
+        "next_payment": "2026-09-25"
+    },
+    {
+        "name": "xbox game pass",
+        "price": 60.0,
+        "billing_cycle": "yearly",
+        "next_payment": "2026-10-01"
+    },
+    {
+        "name": "amazon prime",
+        "price": 140.0,
+        "billing_cycle": "yearly",
+        "next_payment": "2026-10-15"
+    }
+]

@@ -11,13 +11,14 @@ while True:
     print("1. Add subscription")
     print("2. Remove subscription")
     print("3. Show subscriptions")
-    print("4. Show monthly cost")
-    print("5. Show yearly cost")
-    print("6. Upcoming payments")
-    print("7. Spending statistics")
-    print("8. Search subscriptions")
-    print("9. Save subscriptions")
-    print("10. Exit")
+    print("4. Show weekly cost")
+    print("5. Show monthly cost")
+    print("6. Show yearly cost")
+    print("7. Upcoming payments")
+    print("8. Spending statistics")
+    print("9. Search subscriptions")
+    print("10. Save subscriptions")
+    print("11. Exit")
 
     choice = input("Choose an option: ").strip()
 
@@ -50,30 +51,33 @@ while True:
         manager.list_subscriptions()
 
     elif choice == "4":
-        print(f"Monthly cost: {manager.monthly_cost():.2f} AZN")
+        print(f"Weekly cost: {manager.monthly_cost() * 12 / 52:.2f} AZN")
 
     elif choice == "5":
-        print(f"Yearly cost: {manager.yearly_cost():.2f} AZN")
+        print(f"Monthly cost: {manager.monthly_cost():.2f} AZN")
 
     elif choice == "6":
-        manager.upcoming_payments()
+        print(f"Yearly cost: {manager.monthly_cost() * 12:.2f} AZN")
 
     elif choice == "7":
-        manager.spending_statistics()
+        manager.upcoming_payments()
 
     elif choice == "8":
+        manager.spending_statistics()
+
+    elif choice == "9":
         query = input("Search: ").strip()
         manager.search_subscriptions(query)
 
-    elif choice == "9":
+    elif choice == "10":
         manager.save_subscriptions()
         print("Subscriptions saved!")
 
-    elif choice == "10":
+    elif choice == "11":
         manager.save_subscriptions()
         print("Subscriptions saved!")
         print("Goodbye!")
         break
 
     else:
-        print("Invalid option. Please choose 1-10.")
+        print("Invalid option. Please choose 1-11.")

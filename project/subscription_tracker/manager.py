@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 from subscription import Subscription
+
 class SubscriptionManager:
     def __init__(self):
         self.subscriptions = []
@@ -28,12 +29,14 @@ class SubscriptionManager:
         total = 0
 
         for subscription in self.subscriptions:
-            total += subscription.monthly_cost()
+            if subscription.billing_cycle == "weekly":
+                total += subscription.price * 52 / 12
+            elif subscription.billing_cycle == "monthly":
+                total += subscription.price
+            elif subscription.billing_cycle == "yearly":
+                total += subscription.price / 12
 
         return total
-
-    def yearly_cost(self):
-        return self.monthly_cost() * 12
 
     def upcoming_payments(self):
         if not self.subscriptions:
@@ -112,7 +115,8 @@ class SubscriptionManager:
             return
 
         monthly = self.monthly_cost()
-        yearly = self.yearly_cost()
+        yearly = monthly * 12
+        weekly = monthly * 12 / 52
 
         weekly_subscriptions = 0
         monthly_subscriptions = 0
@@ -126,12 +130,22 @@ class SubscriptionManager:
             elif subscription.billing_cycle == "yearly":
                 yearly_subscriptions += 1
 
+        def get_monthly_cost(subscription):
+            if subscription.billing_cycle == "weekly":
+                return subscription.price * 52 / 12
+            elif subscription.billing_cycle == "monthly":
+                return subscription.price
+            elif subscription.billing_cycle == "yearly":
+                return subscription.price / 12
+            return 0
+
         most_expensive = max(
             self.subscriptions,
-            key=lambda subscription: subscription.monthly_cost()
+            key=get_monthly_cost
         )
 
         print("\nSPENDING STATISTICS")
+        print(f"Weekly spending: {weekly:.2f} AZN")
         print(f"Monthly spending: {monthly:.2f} AZN")
         print(f"Yearly spending: {yearly:.2f} AZN")
         print(f"Weekly subscriptions: {weekly_subscriptions}")
@@ -139,9 +153,9 @@ class SubscriptionManager:
         print(f"Yearly subscriptions: {yearly_subscriptions}")
         print(
             f"Most expensive: "
-        f"{most_expensive.name} "
-        f"({most_expensive.monthly_cost():.2f} AZN/month)"
-    )
+            f"{most_expensive.name} "
+            f"({get_monthly_cost(most_expensive):.2f} AZN/month)"
+        )
 
     def search_subscriptions(self, query):
         results = []
