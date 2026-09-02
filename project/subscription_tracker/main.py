@@ -29,11 +29,9 @@ manager.add_subscription(spotify)
 manager.add_subscription(netflix)
 manager.add_subscription(github)
 
-print("SUBSCRIPTIONS")
-print("----------------")
+print("\n" + "Your subscriptions:" + "\n")
 
 manager.list_subscriptions()
 
-print()
-print(f"Monthly cost: {manager.monthly_cost():.2f} AZN")
+print(f"\nMonthly cost: {manager.monthly_cost():.2f} AZN")
 print(f"Yearly cost: {manager.yearly_cost():.2f} AZN")
