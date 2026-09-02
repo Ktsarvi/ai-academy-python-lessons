@@ -1,0 +1,5 @@
+Speech Analysis Report
+======================
+
+Top 5 words: [('the', 8), ('you', 6), ('is', 6), ('to', 4), ('and', 4)]
+Sentence count: 11
