@@ -4,6 +4,7 @@ from utils import *
 
 manager = SubscriptionManager()
 manager.load_subscriptions()
+manager.show_warnings()
 
 while True:
     print("\nSUBSCRIPTION TRACKER")

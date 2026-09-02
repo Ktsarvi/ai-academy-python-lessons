@@ -156,3 +156,46 @@ class SubscriptionManager:
 
         for subscription in results:
             print(subscription)
+
+    def show_warnings(self):
+        if not self.subscriptions:
+            return
+
+        today = datetime.today().date()
+        warnings = []
+
+        for subscription in self.subscriptions:
+            payment_date = datetime.strptime(
+                subscription.next_payment,
+                "%Y-%m-%d"
+            ).date()
+
+            days_left = (payment_date - today).days
+
+            if days_left < 0:
+                warnings.append(
+                    f"{subscription.name} - "
+                    f"OVERDUE by {abs(days_left)} days"
+                )
+
+            elif days_left == 0:
+                warnings.append(
+                    f"{subscription.name} - "
+                    f"payment is TODAY"
+                )
+
+            elif days_left <= 7:
+                warnings.append(
+                    f"{subscription.name} - "
+                    f"payment in {days_left} days"
+                )
+
+        if not warnings:
+            return
+
+        print("\nWARNINGS:")
+
+        for warning in warnings:
+            print(warning)
+
+        print()
