@@ -1,3 +1,6 @@
+from datetime import datetime
+import json
+from subscription import Subscription
 class SubscriptionManager:
     def __init__(self):
         self.subscriptions = []
@@ -25,12 +28,117 @@ class SubscriptionManager:
         total = 0
 
         for subscription in self.subscriptions:
-            if subscription.billing_cycle == "monthly":
-                total += subscription.price
-            elif subscription.billing_cycle == "yearly":
-                total += subscription.price / 12
+            total += subscription.monthly_cost()
 
         return total
 
     def yearly_cost(self):
         return self.monthly_cost() * 12
+
+    def upcoming_payments(self):
+        if not self.subscriptions:
+            print("No subscriptions found.")
+            return
+
+        today = datetime.today().date()
+
+        payments = []
+
+        for subscription in self.subscriptions:
+            payment_date = datetime.strptime(
+                subscription.next_payment,
+                "%Y-%m-%d"
+            ).date()
+
+            days_left = (payment_date - today).days
+
+            payments.append((subscription, payment_date, days_left))
+
+        payments.sort(key=lambda x: x[1])
+
+        for subscription, payment_date, days_left in payments:
+            if days_left < 0:
+                print(
+                    f"{subscription.name} - "
+                    f"overdue by {abs(days_left)} days"
+                )
+            elif days_left == 0:
+                print(
+                    f"{subscription.name} - "
+                    f"payment is TODAY"
+                )
+            else:
+                print(
+                    f"{subscription.name} - "
+                    f"{payment_date} - "
+                    f"in {days_left} days"
+                )
+
+    def save_subscriptions(self):
+        data = []
+
+        for subscription in self.subscriptions:
+            data.append({
+                "name": subscription.name,
+                "price": subscription.price,
+                "billing_cycle": subscription.billing_cycle,
+                "next_payment": subscription.next_payment
+            })
+
+        with open("subscriptions.json", "w") as file:
+            json.dump(data, file, indent=4)
+
+    def load_subscriptions(self):
+        try:
+            with open("subscriptions.json", "r") as file:
+                data = json.load(file)
+
+            for item in data:
+                subscription = Subscription(
+                    item["name"],
+                    item["price"],
+                    item["billing_cycle"],
+                    item["next_payment"]
+                )
+
+                self.subscriptions.append(subscription)
+
+        except FileNotFoundError:
+            pass
+            
+    def spending_statistics(self):
+        if not self.subscriptions:
+            print("No subscriptions found.")
+            return
+
+        monthly = self.monthly_cost()
+        yearly = self.yearly_cost()
+
+        weekly_subscriptions = 0
+        monthly_subscriptions = 0
+        yearly_subscriptions = 0
+
+        for subscription in self.subscriptions:
+            if subscription.billing_cycle == "weekly":
+                weekly_subscriptions += 1
+            elif subscription.billing_cycle == "monthly":
+                monthly_subscriptions += 1
+            elif subscription.billing_cycle == "yearly":
+                yearly_subscriptions += 1
+
+        most_expensive = max(
+            self.subscriptions,
+            key=lambda subscription: subscription.monthly_cost()
+        )
+
+        print("\nSPENDING STATISTICS")
+        print(f"Monthly spending: {monthly:.2f} AZN")
+        print(f"Yearly spending: {yearly:.2f} AZN")
+        print(f"Weekly subscriptions: {weekly_subscriptions}")
+        print(f"Monthly subscriptions: {monthly_subscriptions}")
+        print(f"Yearly subscriptions: {yearly_subscriptions}")
+        print(
+            f"Most expensive: "
+        f"{most_expensive.name} "
+        f"({most_expensive.monthly_cost():.2f} AZN/month)"
+    )

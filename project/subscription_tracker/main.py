@@ -1,37 +1,73 @@
 from subscription import Subscription
 from manager import SubscriptionManager
-
+from utils import *
 
 manager = SubscriptionManager()
+manager.load_subscriptions()
 
-spotify = Subscription(
-    "Spotify",
-    5.99,
-    "monthly",
-    "2026-09-15"
-)
+while True:
+    print("\nSUBSCRIPTION TRACKER")
+    print("1. Add subscription")
+    print("2. Remove subscription")
+    print("3. Show subscriptions")
+    print("4. Show monthly cost")
+    print("5. Show yearly cost")
+    print("6. Upcoming payments")
+    print("7. Spending statistics")
+    print("8. Save subscriptions")
+    print("9. Exit")
 
-netflix = Subscription(
-    "Netflix",
-    15.99,
-    "monthly",
-    "2026-09-10"
-)
+    choice = input("Choose an option: ").strip()
 
-github = Subscription(
-    "GitHub",
-    48,
-    "yearly",
-    "2027-01-20"
-)
+    if choice == "1":
+        name = get_valid_name()
+        price = get_valid_price()
+        billing_cycle = get_valid_billing_cycle()
+        next_payment = get_valid_date()
 
-manager.add_subscription(spotify)
-manager.add_subscription(netflix)
-manager.add_subscription(github)
+        subscription = Subscription(
+            name,
+            price,
+            billing_cycle,
+            next_payment
+        )
 
-print("\n" + "Your subscriptions:" + "\n")
+        manager.add_subscription(subscription)
 
-manager.list_subscriptions()
+        print("Subscription added!")
 
-print(f"\nMonthly cost: {manager.monthly_cost():.2f} AZN")
-print(f"Yearly cost: {manager.yearly_cost():.2f} AZN")
+    elif choice == "2":
+        name = get_valid_name()
+
+        if manager.remove_subscription(name):
+            print("Subscription removed!")
+        else:
+            print("Subscription not found.")
+
+    elif choice == "3":
+        manager.list_subscriptions()
+
+    elif choice == "4":
+        print(f"Monthly cost: {manager.monthly_cost():.2f} AZN")
+
+    elif choice == "5":
+        print(f"Yearly cost: {manager.yearly_cost():.2f} AZN")
+
+    elif choice == "6":
+        manager.upcoming_payments()
+
+    elif choice == "7":
+        manager.spending_statistics()
+
+    elif choice == "8":
+        manager.save_subscriptions()
+        print("Subscriptions saved!")
+
+    elif choice == "9":
+        manager.save_subscriptions()
+        print("Subscriptions saved!")
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid option. Please choose 1-9.")
