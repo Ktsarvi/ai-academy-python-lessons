@@ -1,0 +1,3 @@
+{"id": "4e1704c8-9d9f-4874-a202-e2c3591d1b8b", "name": "Javid", "email": "javid.khalilov@naic.az"}
+{"id": "bfb71eda-f46d-487e-bdce-2f363af12e29", "name": "Shahin", "email": "shahin.safarli@naic.az"}
+{"id": "97d3289b-7a3d-468a-8243-6e963c5f28d5", "name": "Fatma", "email": "fatma.mammadova@naic.az"}
